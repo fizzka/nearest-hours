@@ -2,6 +2,10 @@
     bootstrap="vendor/autoload.php"
     colors="true"
 >
+    <php>
+        <ini name="date.timezone" value="Europe/Moscow"/>
+    </php>
+
     <testsuites>
         <testsuite name="all">
             <directory>tests</directory>
