@@ -4,8 +4,8 @@
         "tightenco/collect": "^5.8"
     },
     "autoload": {
-    	"files": [
-    		"src/func.php"
-    	]
+        "psr-4": {
+            "Fizz\\Date\\": "src"
+        }
     }
 }
