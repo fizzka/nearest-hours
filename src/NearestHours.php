@@ -44,4 +44,18 @@ final class NearestHours
 
         return $date->setTimeZone(date_default_timezone_get());
     }
+
+    public function nearestWorkingHours2(CarbonInterface $date, $hours = ['11:00', '21:00']): CarbonInterface
+    {
+        $start = $date->setTimeFromTimeString($hours[0]);
+        $end = $date->setTimeFromTimeString($hours[1]);
+
+        if ($date > $end) {
+            $date = $start->addDay();
+        } elseif ($date < $start) {
+            $date = $start;
+        }
+
+        return $date->setTimeZone(date_default_timezone_get());
+    }
 }
