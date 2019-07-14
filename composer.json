@@ -1,0 +1,11 @@
+{
+    "require": {
+        "nesbot/carbon": "^2.20",
+        "tightenco/collect": "^5.8"
+    },
+    "autoload": {
+    	"files": [
+    		"src/func.php"
+    	]
+    }
+}
