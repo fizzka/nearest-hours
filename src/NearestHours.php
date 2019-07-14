@@ -23,7 +23,7 @@ final class NearestHours
     private function nearestWorkingDay(CarbonInterface $date): CarbonInterface
     {
         $period = CarbonPeriod::create($date);
-        $period->setDateClass(CarbonImmutable::class);
+        // $period->setDateClass(CarbonImmutable::class);
         $period->filter(function ($date) {
             return !$this->isDayoff($date);
         });
