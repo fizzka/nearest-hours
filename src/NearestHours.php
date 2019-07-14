@@ -36,11 +36,7 @@ final class NearestHours
         $start = $date->setTimeFromTimeString($hours[0]);
         $end = $date->setTimeFromTimeString($hours[1]);
 
-        if ($this->isDayoff($date) || $date > $end) {
-            $date = $this->nearestWorkingDay($start->addDay());
-        } elseif ($date < $start) {
-            $date = $start;
-        }
+        $date = $this->modifyDateWithWorkingHours($date, $start, $end);
 
         return $date->setTimeZone(date_default_timezone_get());
     }
@@ -50,12 +46,30 @@ final class NearestHours
         $start = $date->setTimeFromTimeString($hours[0]);
         $end = $date->setTimeFromTimeString($hours[1]);
 
+        $date = $this->modifyDateWithWorkingHours2($date, $start, $end);
+
+        return $date->setTimeZone(date_default_timezone_get());
+    }
+
+    private function modifyDateWithWorkingHours($date, $start, $end)
+    {
+        if ($this->isDayoff($date) || $date > $end) {
+            $date = $this->nearestWorkingDay($start->addDay());
+        } elseif ($date < $start) {
+            $date = $start;
+        }
+
+        return $date;
+    }
+
+    private function modifyDateWithWorkingHours2($date, $start, $end)
+    {
         if ($date > $end) {
             $date = $start->addDay();
         } elseif ($date < $start) {
             $date = $start;
         }
 
-        return $date->setTimeZone(date_default_timezone_get());
+        return $date;
     }
 }
