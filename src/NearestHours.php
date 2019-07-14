@@ -14,7 +14,7 @@ final class NearestHours
 
     private function isDayoff(CarbonInterface $date): bool
     {
-        return (int)$date->year !== 2019
+        return $date->year !== 2019
             ? true
             : (bool)$this->getDayoffMap2019()[$date->dayOfYear - 1]
         ;
